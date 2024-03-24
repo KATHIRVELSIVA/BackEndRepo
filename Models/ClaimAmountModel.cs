@@ -9,7 +9,7 @@ namespace CrudMicroProject.Models
         public int PolicyID { get; set; }
         public int AddOnPolicyID { get; set; }
         public int ClaimID { get; set; }
-        public int IDVvalue { get; set; }
+        public int UserID { get; set; }
         public double ClaimAmount { get; set; }
     }
 }

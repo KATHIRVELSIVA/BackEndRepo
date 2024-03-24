@@ -14,5 +14,6 @@ namespace CrudMicroProject.Data
         public DbSet<InsuranceApplyModel> InsuranceApply { get; set; }
         public DbSet<ClaimModel> Claim { get; set; }
         public DbSet<ClaimAmountModel> ClaimAmounts { get; set; }
+        public DbSet<PdfDocumentModel> PdfDocument { get; set; } = default!;
     }
 }
