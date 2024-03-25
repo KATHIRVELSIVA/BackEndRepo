@@ -44,11 +44,12 @@ namespace CrudMicroProject.Controllers
         [HttpPost]
         public IActionResult LoginModel(LoginModel loginModel)
         {
+            string email = loginModel.Email!;
+            string password = loginModel.Password!;
             try
             {
-                string email = loginModel.Email!;
-                string password = loginModel.Password!;
                 UserModel olduser = _context.User.Where(user1 => user1.EmailID == email).FirstOrDefault()!;
+                AdminModel oldadmin = _context.Admin.Where(user1 => user1.EmailID == email).FirstOrDefault()!;
                 if (olduser.EmailID == email && olduser != null)
                 {
                     if (olduser.Password == password)
@@ -64,6 +65,18 @@ namespace CrudMicroProject.Controllers
 
             catch (Exception)
             {
+                AdminModel oldadmin = _context.Admin.Where(user1 => user1.EmailID == email).FirstOrDefault()!;
+                if (oldadmin.EmailID == email && oldadmin != null)
+                {
+                    if (oldadmin.Password == password)
+                    {
+                        return Ok("{\"emailstatus\":true,\"passwordstatus\":true,\"admin\":true}");
+                    }
+                    else
+                    {
+                        return Ok("{\"emailstatus\":true,\"passwordstatus\":false}");
+                    }
+                }
                 return Ok("{\"emailstatus\":false,\"passwordstatus\":false}");
             }
             return Ok("{\"emailstatus\":false,\"passwordstatus\":false}");
@@ -77,6 +90,7 @@ namespace CrudMicroProject.Controllers
             {
                 string email = loginModel.Email!;
                 string password = loginModel.Password!;
+                
                 UserModel olduser = _context.User.Where(user1 => user1.EmailID == email).FirstOrDefault()!;
                 if (olduser.EmailID == email && olduser != null)
                 {
