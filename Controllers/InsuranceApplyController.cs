@@ -25,6 +25,7 @@ namespace CrudMicroProject.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<InsuranceApplyModel>>> GetInsuranceApply()
         {
+            //return await _context.InsuranceApply.Include(a => a.user).Include(b => b.addOnPolicy).Include(c => c.policy).ToListAsync();
             return await _context.InsuranceApply.ToListAsync();
         }
 
